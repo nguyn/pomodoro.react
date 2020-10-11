@@ -1,8 +1,24 @@
 import React, {useState, useRef} from 'react';
+import { GiTomato } from 'react-icons/gi';
 import './App.css';
 
 function padTime(time) {
   return time.toString().padStart(2, '0');
+}
+
+function tomatoRender(number)
+{
+  if(number==0)
+  {
+    number = 4;
+  }
+  let i;
+  let res=[];
+  for(i=0;i<number;i++)
+  {
+    res.push(<GiTomato size={100} />);
+  }
+  return res;
 }
 
 export default function App() {
@@ -18,7 +34,7 @@ export default function App() {
     stackRef.current++;
     intervalRef.current = setInterval(() => setTimeLeft(timeLeft => {
       if(timeLeft >= 1) return timeLeft-1;
-      if(stackRef.current%4==0)
+      if(stackRef.current%4===0)
       {
         setTimeLeft(15*60);
       }
@@ -59,6 +75,9 @@ export default function App() {
 
   return (
     <div className="app">
+      <div className="tomato">
+        <h2>{tomatoRender(stackRef.current%4)} </h2>
+      </div>
       <h2>{title}</h2>
       <p>Number of cycles : {stackRef.current}</p>
       <div className="timer">
