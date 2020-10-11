@@ -8,7 +8,7 @@ function padTime(time) {
 
 function tomatoRender(number)
 {
-  if(number==0)
+  if(number===0)
   {
     number = 4;
   }
